@@ -1,6 +1,6 @@
-// Checks the puzzle generator: every puzzle must have exactly one solution, match its
+// Benchmarks the puzzle generator and spot-checks it: every puzzle must have exactly one solution, match its
 // level, and be made quickly enough for an older phone.
-// Usage: node tools/test.mjs [puzzles per level]
+// Usage: npm run bench [-- puzzles per level]
 import * as S from '../js/sudoku.js';
 
 const N = Number(process.argv[2]) || 12;

@@ -25,7 +25,7 @@ Sudoku by Trippus Games, as an installable web app (PWA) that is ready to be wra
 | Svær | + locked candidates, naked/hidden pairs | ~27 |
 | Ekspert | + triples, X-wing, XY-wing, swordfish | ~27 |
 
-Every puzzle can be solved without guessing. Making one takes under 0.2 s on a PC (`npm test` prints the timings).
+Every puzzle can be solved without guessing. Making one takes under 0.2 s on a PC (`npm run bench` prints the timings).
 
 ## Run locally
 ```bash
@@ -33,8 +33,15 @@ npm start
 ```
 Open http://localhost:5181. The server also prints a LAN address, so you can try the game on your phone over the same Wi-Fi.
 
+## Tests
+- `npm test`: unit tests for the rules engine (`tests/unit/`). They take about 1 second
+- `npm run test:e2e`: plays the real game in headless Edge through its buttons (`tests/e2e/`). They take about 20 seconds and start their own server
+- `npm run test:all`: runs both. Run this before every commit
+- `tests/MANUAL.md`: a short checklist for a real phone before a release (feel, sound, layout)
+- `bugs/`: one file per bug report, plus the fix process. Every fixed bug gets a regression test named `BUG-00X: …`
+
 ## Scripts
-- `npm test`: checks the generator (one solution, correct level, deterministic, timing)
+- `npm run bench`: timing and spot-checks for the generator
 - `npm run icons`: renders the icons from `tools/icon.html` with headless Edge
 - `npm run shots`: renders store screenshots and the feature graphic (needs `npm start` running)
 - `npm run check-listing`: checks `store/listing.md` against Google Play's length limits
