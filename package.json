@@ -1,0 +1,14 @@
+{
+  "name": "trippus-sudoku",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sudoku by Trippus Games - web app and Android app",
+  "type": "module",
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "test": "node tools/test.mjs",
+    "icons": "node tools/make-icons.mjs",
+    "shots": "node tools/store-shots.mjs",
+    "check-listing": "node tools/check-listing.mjs"
+  }
+}

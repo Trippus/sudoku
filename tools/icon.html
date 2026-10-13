@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Icon</title>
+  <!-- The app icon, drawn as SVG. tools/make-icons.mjs screenshots it at each size.
+       ?scale=0.6 shrinks the artwork (maskable / adaptive icons get cropped),
+       ?bg=0 leaves the background transparent, ?art=0 draws only the background. -->
+  <style>html, body { margin: 0; background: transparent; } svg { display: block; width: 100vw; height: 100vh; }</style>
+</head>
+<body>
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="bg" cx="50%" cy="30%" r="85%">
+        <stop offset="0" stop-color="#3d6a96"/>
+        <stop offset="1" stop-color="#16263a"/>
+      </radialGradient>
+      <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+        <feDropShadow dx="0" dy="2.2" stdDeviation="2.4" flood-color="#000" flood-opacity=".35"/>
+      </filter>
+    </defs>
+    <rect id="bgRect" width="100" height="100" fill="url(#bg)"/>
+    <g id="art">
+      <g transform="rotate(-6 50 50)" filter="url(#shadow)">
+        <rect x="19" y="19" width="62" height="62" rx="9" fill="#2b2522"/>
+        <g id="tiles"></g>
+      </g>
+    </g>
+  </svg>
+  <script>
+    const q = new URLSearchParams(location.search);
+    const scale = +(q.get('scale') || 1);
+    if (q.get('bg') === '0') document.getElementById('bgRect').remove();
+    const art = document.getElementById('art');
+    if (q.get('art') === '0') art.remove();
+    else art.setAttribute('transform', `translate(50 50) scale(${scale}) translate(-50 -50)`);
+
+    // A 3×3 box: ink digits on paper, one gold "selected" tile, two blue player digits.
+    const digits = [5, 3, 7, 6, 1, 9, 2, 8, 4];
+    const ns = 'http://www.w3.org/2000/svg';
+    const g = document.getElementById('tiles');
+    const s = 19.33;
+    digits.forEach((d, i) => {
+      const x = 20.5 + (i % 3) * (s + 0.25);
+      const y = 20.5 + Math.floor(i / 3) * (s + 0.25);
+      const r = document.createElementNS(ns, 'rect');
+      Object.entries({ x, y, width: s - 1, height: s - 1, rx: [0, 2, 6, 8].includes(i) ? 7 : 1.5, fill: i === 4 ? '#f5c26b' : '#fffdf8' })
+        .forEach(([k, v]) => r.setAttribute(k, v));
+      g.appendChild(r);
+      const t = document.createElementNS(ns, 'text');
+      Object.entries({ x: x + (s - 1) / 2, y: y + (s - 1) / 2 + 5.2, 'text-anchor': 'middle', 'font-family': 'Georgia, serif', 'font-weight': 700, 'font-size': 15, fill: i === 2 || i === 6 ? '#2f5fb3' : i === 4 ? '#3a2700' : '#2b2522' })
+        .forEach(([k, v]) => t.setAttribute(k, v));
+      t.textContent = d;
+      g.appendChild(t);
+    });
+  </script>
+</body>
+</html>

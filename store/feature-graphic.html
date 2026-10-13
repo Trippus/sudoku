@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <title>Feature graphic</title>
+  <!-- Google Play "feature graphic" (1024×500). Rendered to PNG by tools/store-shots.mjs. -->
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    html, body { position: static; width: 1024px; height: 500px; overflow: hidden; }
+    body { background: radial-gradient(120% 120% at 30% 20%, #3d6a96 0%, #16263a 100%); color: #fff; }
+    .wrap { position: relative; width: 1024px; height: 500px; }
+    .text { position: absolute; left: 70px; top: 128px; width: 470px; }
+    h1 { margin: 0; font: 700 96px/1 ui-serif, "New York", Georgia, serif; color: #fffdf8; filter: drop-shadow(0 3px 8px rgba(0, 0, 0, .35)); }
+    .tag { margin: 14px 0 0; font-size: 30px; opacity: .85; }
+    .pub { position: absolute; left: 70px; bottom: 54px; display: flex; align-items: center; gap: 12px; color: #fff6d0; }
+    .pub img { width: 52px; }
+    .pub span { font: 700 22px/1 ui-serif, "New York", Georgia, serif; }
+    .board { position: absolute; left: 600px; top: 60px; --size: 380px; color: #2b2522; transform: rotate(-5deg); box-shadow: 0 24px 60px rgba(0, 0, 0, .45); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="text">
+      <h1>Sudoku</h1>
+      <p class="tag" id="tag">Rolig hjernegymnastik</p>
+    </div>
+    <div class="board" id="board"></div>
+    <div class="pub"><img src="../assets/logo.svg" alt=""><span>Trippus Games</span></div>
+  </div>
+  <script type="module">
+    import * as S from '../js/sudoku.js';
+    if (new URLSearchParams(location.search).get('lang') === 'en') document.getElementById('tag').textContent = 'Calm brain puzzles';
+    const p = S.generate('medium', 4242);
+    const user = new Set([3, 12, 21, 30, 47, 58, 66]);
+    let html = '';
+    for (let b = 0; b < 9; b++) {
+      html += '<div class="box">';
+      for (let k = 0; k < 9; k++) {
+        const i = (3 * ((b / 3) | 0) + ((k / 3) | 0)) * 9 + 3 * (b % 3) + (k % 3);
+        const d = p.puzzle[i] || (user.has(i) ? p.solution[i] : 0);
+        const cls = i === 40 ? 'sel' : p.puzzle[i] ? 'given' : d ? 'user' : '';
+        html += `<div class="cell ${cls}">${d ? `<span class="v">${d}</span>` : ''}</div>`;
+      }
+      html += '</div>';
+    }
+    document.getElementById('board').innerHTML = html;
+  </script>
+</body>
+</html>
