@@ -203,3 +203,35 @@ test('menu: dark theme and statistics table', async () => {
   assert.equal(r.theme, 'dark');
   assert.equal(r.rows, 20, 'header + 4 levels, 4 columns each');
 });
+
+test('"Nyt spil" mid-game asks first, and "Spil videre" keeps the puzzle', async () => {
+  const r = await run(`
+    $('#iNew').click(); await wait(400);
+    const i = firstEmpty();
+    tapCell(i); press(+A.state.solution[i]); await wait(50);
+    const puzzle = A.state.puzzle;
+    $('#menuBtn').click(); await wait(100);
+    $('#mNew').click(); await wait(200);
+    const asked = $('#confirmModal').classList.contains('open');
+    $('#confirmModal [data-act="cancel"]').click(); await wait(200);
+    return { asked, same: A.state.puzzle === puzzle, closed: !$('#confirmModal').classList.contains('open') };
+  `);
+  assert.deepEqual(r, { asked: true, same: true, closed: true });
+});
+
+test('settings stick after a reload', async () => {
+  await run(`
+    $('#iNew').click(); await wait(400);
+    $('#menuBtn').click(); await wait(100);
+    $('#themeSeg [data-v="dark"]').click();
+    $('#optSame').click();
+    $('#optSound').click();
+    $('#menuClose').click();
+  `);
+  await g.reload();
+  const r = await run(`
+    const s = JSON.parse(localStorage.getItem('sudoku.v1')).settings;
+    return { theme: document.documentElement.dataset.theme, same: s.highlightSame, sound: s.sound };
+  `);
+  assert.deepEqual(r, { theme: 'dark', same: false, sound: false });
+});
