@@ -1,16 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-80 -106 160 172">
-  <!-- One-colour line version of the logo, used as a CSS mask on the card backs.
-       Lines are extra bold so the cup still reads at ~20 px. -->
-  <g fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M-6 -42 C-6 -54 -30 -60 -30 -79 C-30 -94 -13 -99 0 -85"/>
-    <path d="M6 -42 C6 -54 30 -60 30 -79 C30 -94 13 -99 0 -85"/>
-    <path d="M44 -14 C70 -14 70 28 40 29"/>
-    <path d="M-44 -30 L44 -30 L40 34 Q38 51 20 51 L-20 51 Q-38 51 -40 34 Z"/>
-    <path d="M-58 58 L58 58"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="64 24 424 432" role="img" aria-label="Trippus Games">
+  <!-- One-colour line version of the mark, used as a CSS mask (card backs) and for one-colour print.
+       The lines are extra bold so the cup still reads at 20 px. -->
+  <g fill="none" stroke="#000" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="256" cy="412" rx="166" ry="32"/>
+    <path d="M362 280C452 262 464 384 350 382"/>
+    <path d="M134 248C134 352 186 422 256 422C326 422 378 352 378 248Z"/>
+    <ellipse cx="256" cy="248" rx="120" ry="32"/>
+    <path d="M262 244C270 228 250 214 256 192C220 160 172 136 172 100C172 72 194 56 216 56C236 56 250 68 256 84C262 68 276 56 296 56C318 56 340 72 340 100C340 136 292 160 256 192"/>
   </g>
-  <g fill="none" stroke="#000" stroke-width="8" stroke-linecap="round">
-    <path d="M-21 -2 Q-14 -11 -7 -2"/>
-    <path d="M7 -2 Q14 -11 21 -2"/>
-    <path d="M-10 10 Q0 20 10 10"/>
-  </g>
+  <path d="M196 330Q212 312 228 330M284 330Q300 312 316 330M232 352Q256 378 280 352" fill="none" stroke="#000" stroke-width="16" stroke-linecap="round"/>
 </svg>

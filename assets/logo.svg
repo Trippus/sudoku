@@ -1,21 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-80 -106 160 172" role="img" aria-label="Trippus Games">
-  <!-- Trippus Games mark: a smiling coffee cup whose steam curls into a heart -->
-  <g fill="none" stroke="#E2725B" stroke-width="5.5" stroke-linecap="round">
-    <path d="M-6 -42 C-6 -54 -30 -60 -30 -79 C-30 -94 -13 -99 0 -85"/>
-    <path d="M6 -42 C6 -54 30 -60 30 -79 C30 -94 13 -99 0 -85"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="64 24 424 432" role="img" aria-label="Trippus Games">
+  <!-- Trippus Games: a smiling coffee cup whose steam curls into a heart -->
+  <ellipse cx="256" cy="412" rx="170" ry="34" fill="#F7ECD6" stroke="#123D30" stroke-width="14"/>
+  <ellipse cx="256" cy="406" rx="116" ry="16" fill="#E6D4B0"/>
+  <path d="M362 280C452 262 464 384 350 382" fill="none" stroke="#123D30" stroke-width="56" stroke-linecap="round"/>
+  <path d="M362 280C452 262 464 384 350 382" fill="none" stroke="#F7ECD6" stroke-width="28" stroke-linecap="round"/>
+  <path d="M134 248C134 352 186 422 256 422C326 422 378 352 378 248Z" fill="#F7ECD6" stroke="#123D30" stroke-width="14" stroke-linejoin="round"/>
+  <path d="M346 270C346 342 316 394 276 412C340 406 370 352 372 270Z" fill="#E6D4B0"/>
+  <ellipse cx="256" cy="248" rx="122" ry="34" fill="#F7ECD6" stroke="#123D30" stroke-width="14"/>
+  <ellipse cx="256" cy="250" rx="100" ry="22" fill="#3A2316"/>
+  <ellipse cx="272" cy="252" rx="48" ry="11" fill="#8A5A3C"/>
+  <ellipse cx="280" cy="252" rx="24" ry="5" fill="#3A2316"/>
+  <path d="M196 330Q212 312 228 330M284 330Q300 312 316 330M232 352Q256 378 280 352" fill="none" stroke="#123D30" stroke-width="11" stroke-linecap="round"/>
+  <circle cx="184" cy="356" r="15" fill="#F2A0A0"/>
+  <circle cx="328" cy="356" r="15" fill="#F2A0A0"/>
+  <g class="steam">
+    <path d="M262 244C270 228 250 214 256 192C220 160 172 136 172 100C172 72 194 56 216 56C236 56 250 68 256 84C262 68 276 56 296 56C318 56 340 72 340 100C340 136 292 160 256 192" fill="none" stroke="#123D30" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M262 244C270 228 250 214 256 192C220 160 172 136 172 100C172 72 194 56 216 56C236 56 250 68 256 84C262 68 276 56 296 56C318 56 340 72 340 100C340 136 292 160 256 192" fill="none" stroke="#F7ECD6" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
-  <ellipse cx="0" cy="54" rx="62" ry="8" fill="#FBF6EE" stroke="#2B2522" stroke-width="3"/>
-  <path d="M42 -14 C72 -14 72 30 38 31" fill="none" stroke="#2B2522" stroke-width="13" stroke-linecap="round"/>
-  <path d="M42 -14 C72 -14 72 30 38 31" fill="none" stroke="#FBF6EE" stroke-width="6.5" stroke-linecap="round"/>
-  <path d="M-44 -30 L44 -30 L40 34 Q38 51 20 51 L-20 51 Q-38 51 -40 34 Z" fill="#FBF6EE" stroke="#2B2522" stroke-width="3" stroke-linejoin="round"/>
-  <path d="M-42.4 14 L42.4 14 L41.9 22 L-41.9 22 Z" fill="#E2725B"/>
-  <ellipse cx="0" cy="-30" rx="44" ry="8" fill="#FBF6EE" stroke="#2B2522" stroke-width="3"/>
-  <ellipse cx="0" cy="-29" rx="37" ry="5" fill="#6F4A35"/>
-  <g fill="none" stroke="#2B2522" stroke-width="3" stroke-linecap="round">
-    <path d="M-20 -4 Q-14 -11 -8 -4"/>
-    <path d="M8 -4 Q14 -11 20 -4"/>
-    <path d="M-8 3 Q0 10 8 3"/>
-  </g>
-  <circle cx="-26" cy="4" r="5" fill="#F2A0A0"/>
-  <circle cx="26" cy="4" r="5" fill="#F2A0A0"/>
 </svg>
