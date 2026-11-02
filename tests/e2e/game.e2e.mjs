@@ -235,3 +235,17 @@ test('settings stick after a reload', async () => {
   `);
   assert.deepEqual(r, { theme: 'dark', same: false, sound: false });
 });
+
+test('music starts after the first tap, and "Musik" off stops it and is remembered', async () => {
+  const r = await run(`
+    $('#iNew').click(); await wait(400);
+    tapCell(firstEmpty()); await wait(300);
+    const on = A.Music.playing;
+    $('#menuBtn').click(); await wait(100);
+    $('#optMusic').click(); await wait(100);
+    const off = A.Music.playing;
+    tapCell(40); await wait(100);
+    return { on, off, afterTap: A.Music.playing, saved: JSON.parse(localStorage.getItem('sudoku.v1')).settings.music };
+  `);
+  assert.deepEqual(r, { on: true, off: false, afterTap: false, saved: false });
+});

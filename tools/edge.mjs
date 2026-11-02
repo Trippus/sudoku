@@ -51,7 +51,7 @@ export async function launchEdge() {
   const profile = mkdtempSync(path.join(tmpdir(), 'edge-'));
   const edge = spawn(EDGE, [
     '--headless=new', `--remote-debugging-port=${port}`, `--user-data-dir=${profile}`,
-    '--no-first-run', '--hide-scrollbars', '--mute-audio', 'about:blank',
+    '--no-first-run', '--hide-scrollbars', '--mute-audio', '--autoplay-policy=no-user-gesture-required', 'about:blank',
   ], { stdio: 'ignore' });
   const close = async () => {
     edge.kill();

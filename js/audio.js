@@ -1,4 +1,4 @@
-// All sounds are synthesized with Web Audio — no audio files to download.
+// All sounds are synthesized with Web Audio — no audio files to download. The music is in music.js.
 let ctx = null;
 let master = null;
 let noise = null;
@@ -7,6 +7,11 @@ const PENTATONIC = [0, 2, 4, 7, 9, 12, 14, 16, 19];
 
 export const Sound = {
   enabled: true,
+
+  // The AudioContext once unlock() has made it (music.js plays through it).
+  get context() {
+    return ctx;
+  },
 
   // iOS only allows audio to start from inside a user gesture.
   unlock() {

@@ -1,5 +1,6 @@
 import * as S from './sudoku.js';
 import { Sound } from './audio.js';
+import { Music } from './music.js';
 import { Ads } from './ads.js';
 
 const $ = (s) => document.querySelector(s);
@@ -21,7 +22,7 @@ const UNIT_NAME = (u) => (u < 9 ? 'rækken' : u < 18 ? 'kolonnen' : 'boksen');
 const PEER_SET = S.PEERS.map((p) => new Set(p));
 const MONTHS = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
 
-const settings = { level: 'easy', sound: true, showErrors: true, highlightSame: true, autoNotes: true, theme: 'auto' };
+const settings = { level: 'easy', sound: true, music: true, showErrors: true, highlightSame: true, autoNotes: true, theme: 'auto' };
 const blankLevel = () => ({ played: 0, won: 0, bestTime: 0, totalTime: 0, perfect: 0 });
 const stats = {
   levels: Object.fromEntries(S.LEVELS.map((l) => [l, blankLevel()])),
@@ -502,6 +503,7 @@ const levelSegHtml = () => S.LEVELS.map((l) => `<button type="button" data-level
 function syncSettingsUi() {
   document.querySelectorAll('#levelSeg button').forEach((b) => b.classList.toggle('on', b.dataset.level === settings.level));
   $('#optSound').checked = settings.sound;
+  $('#optMusic').checked = settings.music;
   $('#optErrors').checked = settings.showErrors;
   $('#optSame').checked = settings.highlightSame;
   $('#optAutoNotes').checked = settings.autoNotes;
@@ -515,6 +517,9 @@ function applyTheme() {
   document.documentElement.dataset.theme = dark ? 'dark' : 'light';
   document.querySelector('meta[name=theme-color]').content = dark ? '#15181d' : '#f4efe6';
   Sound.enabled = settings.sound;
+  Music.enabled = settings.music;
+  if (settings.music) Music.play();
+  else Music.pause();
 }
 
 function buildMenu() {
@@ -526,7 +531,7 @@ function buildMenu() {
     syncSettingsUi();
     save();
   });
-  const toggles = { optSound: 'sound', optErrors: 'showErrors', optSame: 'highlightSame', optAutoNotes: 'autoNotes' };
+  const toggles = { optSound: 'sound', optMusic: 'music', optErrors: 'showErrors', optSame: 'highlightSame', optAutoNotes: 'autoNotes' };
   for (const [id, key] of Object.entries(toggles)) {
     $('#' + id).addEventListener('change', (e) => {
       settings[key] = e.target.checked;
@@ -684,7 +689,13 @@ function init() {
     const b = e.target.closest('button');
     if (b) input(+b.dataset.d);
   });
-  for (const ev of ['pointerdown', 'pointerup', 'touchend', 'keydown']) document.addEventListener(ev, () => Sound.unlock(), { capture: true });
+  // Audio may only start from a tap. The music rests while the game is out of sight.
+  for (const ev of ['pointerdown', 'pointerup', 'touchend', 'keydown']) {
+    document.addEventListener(ev, () => {
+      Sound.unlock();
+      Music.play();
+    }, { capture: true });
+  }
   document.addEventListener('gesturestart', (e) => e.preventDefault());
   document.addEventListener('contextmenu', (e) => e.preventDefault());
   darkQuery.addEventListener?.('change', applyTheme);
@@ -738,7 +749,12 @@ function init() {
       $('#time').textContent = fmtTime(state.elapsed);
     }
   }, 1000);
-  document.addEventListener('visibilitychange', () => document.hidden && save());
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      save();
+      Music.pause();
+    } else Music.play();
+  });
   window.addEventListener('pagehide', save);
 
   // Show the saved game (or a fresh, untouched one) behind the intro screen.
@@ -758,6 +774,7 @@ function init() {
     set state(s) { state = s; history = []; render(); },
     S,
     render,
+    Music,
   };
 }
 

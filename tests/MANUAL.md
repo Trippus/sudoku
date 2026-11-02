@@ -6,6 +6,7 @@ Det, de automatiske tests ikke kan mærke. Tag 10 minutter på en rigtig telefon
 ## Følelse og lyd
 - [ ] Tryk på felter og tal føles hurtigt, uden forsinkelse eller dobbelt-zoom
 - [ ] Lyde spiller efter første tryk (iPhone kræver et tryk først), og Lyd fra virker
+- [ ] Musikken starter blødt efter første tryk, looper uden hak, stopper når appen lægges væk, og Musik fra virker
 - [ ] Fuldført række/kolonne/boks blinker guld, og sejrsbølgen ser pæn ud
 
 ## Skærm

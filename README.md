@@ -11,7 +11,7 @@ Sudoku by Trippus Games, as an installable web app (PWA) that is ready to be wra
 - Statistics per level (solved, best time, average time)
 - Light, dark and automatic theme, plus a landscape layout for tablets
 - Saves automatically and works offline through a service worker
-- Sounds are synthesized with Web Audio, so there are no audio files
+- Sounds are synthesized with Web Audio. Calm background music (`assets/music/theme.mp3`, shared by all Trippus games, see `LICENSES.md`) loops softly and can be turned off in the menu
 
 ## How puzzles are made (`js/sudoku.js`)
 - A random full grid is made from a seeded RNG, so the same puzzle number always gives the same puzzle. The daily puzzle uses the date as its seed.
